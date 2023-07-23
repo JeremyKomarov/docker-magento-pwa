@@ -1,20 +1,19 @@
-FROM ubuntu:latest
+# Use the official Node.js image with Yarn pre-installed
+FROM node:14
 
-RUN apt-get update && apt-get install -y curl
+ENV MAGENTO_BACKEND_URL=https://jrstg.local/
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get install -y nodejs
-
-RUN apt-get update && apt-get install -y python3.10
-
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install -y yarn
-
+# Set the working directory inside the container
 WORKDIR /app
 
-COPY ./app/ /app
+# Copy the application code from the host to the container
+COPY app/ /app
 
-EXPOSE 3000
+# Install the application dependencies using Yarn
+RUN yarn install
 
+# Expose the required port(s) for your application (if necessary)
+EXPOSE 1000
+
+# Start your application (replace "start" with the actual command to start your app)
 CMD ["tail", "-f", "/dev/null"]
