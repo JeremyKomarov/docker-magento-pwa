@@ -12,3 +12,7 @@ upgrade:
 
 remove-sample:
 	docker-compose exec app yarn remove @magento/venia-sample-backends
+
+setup: clean
+	setup/scripts/get-ip.sh
+	setup/scripts/generate-env.sh

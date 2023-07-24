@@ -1,15 +1,15 @@
 version: "3"
 services:
   app:
-    container_name:
+    container_name: ${PROJECT_NAME}
     build:
-      context:  ./setup/node
+      context: ./setup/node
       args:
         - NODE_VER=${NODE_VER}
-        - BACKEND_URL=${BACKEND_URL}
+        - HOSTS_URL=${HOSTS_URL}
     volumes:
       - ./app:/app
     ports:
       - "3000:10000"
     extra_hosts:
-      - "${BACKEND_URL}:${IP_DISPATCH}"
+      - "${HOSTS_URL}:${IP_DISPATCH}"
