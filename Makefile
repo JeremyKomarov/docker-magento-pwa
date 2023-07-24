@@ -1,3 +1,7 @@
+make start:
+	docker compose up -d
+	docker-compose exec app yarn install
+
 install:
 	docker-compose exec app yarn install
 
@@ -13,6 +17,6 @@ upgrade:
 remove-sample:
 	docker-compose exec app yarn remove @magento/venia-sample-backends
 
-setup:
-	setup/scripts/get-ip.sh
+setup-env:
+	setup/scripts/get-project-info.sh
 	setup/scripts/generate-env.sh

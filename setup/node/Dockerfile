@@ -1,10 +1,8 @@
-FROM node:14
+ARG NODE_VER
 
-ENV MAGENTO_BACKEND_URL=https://jrstg.local/
+FROM node:${NODE_VER}-alpine
 
 WORKDIR /app
-
-COPY app/ /app
 
 RUN yarn install
 
